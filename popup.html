@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BussyAnandPass</title>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --accent-color: #333333;
+            --highlight-color: #666666;
+            --border-color: #222222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            width: 350px;
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: #888;
+            padding: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--text-color);
+            border-bottom: 2px solid var(--text-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 16px;
+        }
+
+        h2,
+        h3 {
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        /* Inputs & Buttons */
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            background: #111;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--highlight-color);
+        }
+
+        button.action-btn {
+            width: 100%;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        button.action-btn:hover {
+            background: #ddd;
+        }
+
+        /* Shortcuts List */
+        .shortcut-item {
+            background: #111;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .shortcut-keys {
+            background: #222;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--text-color);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+            background-color: #333;
+        }
+
+        /* Status */
+        .status {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 8px;
+            /* min-height: 1em; */
+        }
+
+        /* Uninstall Button (Red Outline) */
+        button.uninstall-btn {
+            background: transparent;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+            margin-top: 10px;
+        }
+
+        button.uninstall-btn:hover {
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        /* Info Icon */
+        .info-icon {
+            cursor: help;
+            color: #888;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .info-icon:hover {
+            color: var(--text-color);
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <!-- Login View -->
+    <div id="login-view" style="display: none;">
+        <div style="text-align: center; margin-bottom: 16px;">
+            <h2 style="margin: 0;">BussyAnandPass</h2>
+            <span style="font-size: 1rem; color: #666;">Login pannu nanba</span>
+        </div>
+        <img src="images/lv_0_20251212185800.gif" id="loginImg"
+            style="height: 180px; margin:auto; display: flex; justify-content: center;"></img>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <h3 style="margin-bottom: 20px;" id="loginTXT">Edhuku Chair ah thookuringa?</h3>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="username sollu">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="password podu">
+            </div>
+            <button id="loginBtn" class="action-btn">Login pannu</button>
+            <div id="loginError" style="color: #ff4444; font-size: 0.8rem; margin-top: 10px;"></div>
+            <div id="loginSCS" style="color: #44ff4a; font-size: 0.8rem; margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <!-- Main App View -->
+    <div id="app-view" style="display: block;">
+        <div style="text-align: center; margin-bottom: 16px; display: flex; flex-direction: row; align-items: center;">
+
+            <img src="images/bussy1.png" style="width: 140px "></img>
+            <div>
+                <h2 style="margin: 0; font-size: 1.2rem;">BussyAnandPass</h2>
+                <!-- <span style="font-size: 0.9rem; color: #666;">Embalaththi naalu (84)</span> -->
+                <p style="color: #aaa; font-size:13px; margin: 0; margin-top: 5px">Logged in as: <span
+                        style="color: #fff;" id="displayUser">BussyAnand</span></p>
+                <button id="logoutBtn" class="action-btn" style=" margin-top: 10px;">Logout</button>
+            </div>
+        </div>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-target="shortcuts">Shortcuts</button>
+            <button class="tab-btn" data-target="settings">Settings</button>
+        </div>
+
+        <!-- Account Tab -->
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+
+
+
+            <div class="section">
+                <label for="aiModel">AI Model</label>
+                <select id="aiModel"
+                    style="width: 100%; background: #111; border: 1px solid var(--border-color); color: var(--text-color); padding: 8px; border-radius: 4px; font-family: 'Montserrat', sans-serif; margin-bottom: 12px; box-sizing: border-box;">
+                    <option value="gpt-4.1-nano" selected>gpt-4.1-nano</option>
+                    <option value="gpt-4.1">gpt-4.1</option>
+                    <option value="gpt-5">gpt-5</option>
+                    <option value="custom">Add New Model</option>
+                </select>
+            </div>
+
+            <div class="section" id="customModelSection" style="display: none;">
+                <label for="customModelName">Custom Model Name</label>
+                <input type="text" id="customModelName" placeholder="e.g., gpt-4-turbo"
+                    style="width: 100%; margin-bottom: 12px;">
+            </div>
+
+            <div class="section">
+                <label for="apiKey">API Key</label>
+                <!-- <a href="https://platform.openai.com/api-keys" target="_blank"
+                    style="color: #888; font-size: 0.75rem; text-decoration: none; margin-left: 5px; transition: color 0.3s;"
+                    onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#888'">Get API Key from here</a> -->
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; margin-top: 6px; gap: 10px">
+                    <input type="text" id="apiKey" placeholder="sk-...">
+                    <button id="saveKeyBtn" class="action-btn"
+                        style="margin: 0 !important; width: 80px; padding: 8.4px !important;">Save</button>
+                </div>
+            </div>
+
+            <div class="section" style="margin-bottom: 12px;">
+                <label for="apiEndpoint">API Endpoint</label>
+                <input type="text" id="apiEndpoint" placeholder="https://api.openai.com/v1/chat/completions"
+                    style="width: 100%; ">
+            </div>
+
+            <div class="section">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 10px">
+                    <button id="resetBtn" class="action-btn" style="background: #fff; margin-top: 0;">Reset to
+                        Defaults</button>
+                    <button id="testApiBtn" class="action-btn" style="background: #fff; margin-top: 0;">Test
+                        API</button>
+                </div>
+                <div id="apiTestStatus"
+                    style="margin-top: 6px; font-size: 0.85rem; min-height: 1em; text-align: right; margin-right: 4px;">
+                </div>
+            </div>
+
+            <div class="section">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <label for="funMode" style="margin: 0; cursor: pointer;">Bussy Mode</label>
+                        <span class="info-icon"
+                            title="A random bussy audio will be played everytime you use the extension">ⓘ</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="funMode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+
+
+
+            <button id="uninstallBtn" class="action-btn uninstall-btn">Uninstall Extension</button>
+            <div id="statusMsg" class="status"></div>
+        </div>
+
+        <!-- Shortcuts Tab -->
+        <div id="shortcuts" class="tab-content active">
+            <h3>Universal</h3>
+            <!-- <div class="shortcut-item">
+                <span>Search Selection</span>
+                <span class="shortcut-keys">Alt+Shift+S</span>
+            </div> -->
+            <div class="shortcut-item">
+                <span>Solve MCQ</span>
+                <span class="shortcut-keys">Alt+Shift+M</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Solve Coding</span>
+                <span class="shortcut-keys">Alt+Shift+A</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Response Popup -->
+    <div id="apiResponsePopup"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center;">
+        <div
+            style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 20px; max-width: 300px; width: 90%; max-height: 400px; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0; font-size: 1rem; color: #fff;">API Response</h3>
+                <button id="closePopupBtn"
+                    style="background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1;">&times;</button>
+            </div>
+            <div id="apiResponseContent"
+                style="background: #0a0a0a; padding: 12px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; color: #ccc; white-space: pre-wrap; word-wrap: break-word; max-height: 300px; overflow-y: auto;">
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
