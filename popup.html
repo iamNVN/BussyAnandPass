@@ -277,17 +277,14 @@
                 <select id="aiModel"
                     style="width: 100%; background: #111; border: 1px solid var(--border-color); color: var(--text-color); padding: 8px; border-radius: 4px; font-family: 'Montserrat', sans-serif; margin-bottom: 12px; box-sizing: border-box;">
                     <option value="gpt-4.1-nano" selected>gpt-4.1-nano</option>
-                    <option value="gpt-4.1">gpt-4.1</option>
                     <option value="gpt-5">gpt-5</option>
-                    <option value="custom">Add New Model</option>
+                    <option value="deepseek-v3">deepseek-v3</option>
+                    <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                    <option value="gemini-3-pro">gemini-3-pro</option>
                 </select>
             </div>
 
-            <div class="section" id="customModelSection" style="display: none;">
-                <label for="customModelName">Custom Model Name</label>
-                <input type="text" id="customModelName" placeholder="e.g., gpt-4-turbo"
-                    style="width: 100%; margin-bottom: 12px;">
-            </div>
+
 
             <div class="section">
                 <label for="apiKey">API Key</label>
@@ -302,11 +299,7 @@
                 </div>
             </div>
 
-            <div class="section" style="margin-bottom: 12px;">
-                <label for="apiEndpoint">API Endpoint</label>
-                <input type="text" id="apiEndpoint" placeholder="https://api.openai.com/v1/chat/completions"
-                    style="width: 100%; ">
-            </div>
+
 
             <div class="section">
                 <div
